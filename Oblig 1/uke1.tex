@@ -1,8 +1,10 @@
 \section{Oppgaver uke 1}
 
-1.) Group17\\
+\subsection{Assignments 1}  
+Group17\\
 	 Members: Halvor Mydske Thoresen \& Victor Rudolfsson\\
-3.) All group documents are saved in the form of latex files in a git repo. \\
+\subsection{Assignments 3}  
+All group documents are saved in the form of latex files in a git repo. \\
 Serverpark structure: 
 \small
 \begin{itemize}
@@ -40,7 +42,8 @@ Serverpark structure:
 		\end{itemize}
 \end{itemize}
 
-6.) \begin{itemize}
+\subsection{Assignments 6} 
+ \begin{itemize}
 	\item \textbf{Many small}
 		\begin{itemize}
 			\item Less damage per machine that is going down
@@ -55,11 +58,11 @@ Serverpark structure:
 		\end{itemize}
 \end{itemize}
 
-8.) \\
+\subsection{Assignments 8} 
 screen -S  to initialize a screen session\\
 screen -x to connect to an already existing session.
 
-9.) \\
+\subsection{Assignments 9} 
 Maintenance - 30\% \\
 Monitoring - 20\% \\
 Guidance  - 20\% \\
@@ -85,7 +88,7 @@ Totalt	    - 100\% \\
   Most of the information integrety tasks can be automated. And if the system is designed well and all the above points are being handled, there should hopefully not be frequently necessary to perform restoration and manual backups.
 \end{description}
 
-10.) The complexity of the Fault Tolerance \& High Avalability(FTHA) architecture seems to be quite on the lower end of the scale compared to the Web Application Hosting(WAH) architecture. This is mainly because FTHA does not affect as many different components as the WAH. \\
+\subsection{Assignments 10}  The complexity of the Fault Tolerance \& High Avalability(FTHA) architecture seems to be quite on the lower end of the scale compared to the Web Application Hosting(WAH) architecture. This is mainly because FTHA does not affect as many different components as the WAH. \\
 The FTHA is also quite a bit easier to scale for better performance because you pretty much only have to implement a mirror version of an already existing setup. However the cost of scaling the FTHA would skyrocket because you always need to add all of the components. The WAH on the other hand has a lot of different components and technologies that makes it complex to scale, but gives flexibility to only upgrade the necessary components when needed. \\
 The FTHA are also limited by physical locations and connections, which adds a layer of complexity to planning and maintenance. The WAH does not suffer from the same limitations, since some of the components can be virtualized and automaticly scaled on demand.\\
 The Disaster Recovery for Local Applications(DRLA) architecture might seem to be even more complex than both FTHA and WAH, but actually is the most simple. The DRLA has a single point of scaling, the backup storage. However, the DRLA has a very complex designing and implementation part, but once everything is working as intended, there are not a lot of extra work to do. Because of the single point of scaling, the DRLA is also the cheapest of these architectures to both scale and manage.
