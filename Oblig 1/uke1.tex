@@ -1,0 +1,93 @@
+\section{Oppgaver uke 1}
+
+1.) Group17\\
+	 Members: Halvor Mydske Thoresen \& Victor Rudolfsson\\
+3.) All group documents are saved in the form of latex files in a git repo. \\
+Serverpark structure: 
+\small
+\begin{itemize}
+	\item web1
+		\begin{itemize}
+			\item \textbf{IP:} 10.10.0.117
+			\item \textbf{OS:} Ubuntu 14.04
+			\item \textbf{Ram:} 512MB
+			\item \textbf{Disk:} 3GB
+			\item \textbf{CPUs:} 1
+		\end{itemize}
+	\item web2
+		\begin{itemize}
+			\item \textbf{IP:} 10.10.0.119
+			\item \textbf{OS:} Ubuntu 14.04
+			\item \textbf{Ram:} 512MB
+			\item \textbf{Disk:} 3GB
+			\item \textbf{CPUs:} 1
+		\end{itemize}
+	\item balancer
+		\begin{itemize}
+			\item \textbf{IP:} 10.10.0.118
+			\item \textbf{OS:} Ubuntu 14.04
+			\item \textbf{Ram:} 512MB
+			\item \textbf{Disk:} 3GB
+			\item \textbf{CPUs:} 1
+		\end{itemize}
+	\item db1
+		\begin{itemize}
+			\item \textbf{IP:} 10.10.0.150
+			\item \textbf{OS:} Ubuntu 14.04
+			\item \textbf{Ram:} 512MB
+			\item \textbf{Disk:} 3GB
+			\item \textbf{CPUs:} 1
+		\end{itemize}
+\end{itemize}
+
+6.) \begin{itemize}
+	\item \textbf{Many small}
+		\begin{itemize}
+			\item Less damage per machine that is going down
+			\item Easier to get a small machine up and running again or replacing it after something happends
+			\item Less to keep track of on each machine and less internal software conflicts
+		\end{itemize}
+	\item \textbf{Few large}
+		\begin{itemize}
+			\item Longer between each machine failure
+			\item Easier to keep track of and map installed software
+			\item Simpler logging and monitoring
+		\end{itemize}
+\end{itemize}
+
+8.) \\
+screen -S  to initialize a screen session\\
+screen -x to connect to an already existing session.
+
+9.) \\
+Maintenance - 30\% \\
+Monitoring - 20\% \\
+Guidance  - 20\% \\
+Access control - 15\% \\
+Design - 10\% \\
+Information integrety  - 5\% \\
+Totalt	    - 100\% \\
+
+\textbf{Reasoning}
+
+\begin{description}
+  \item[Maintenance] \hfill \\
+  The main everyday task is based around maintaining the system by finding and fixing various flaws. 
+  \item[Monitoring] \hfill \\
+  There are a lot of tools and programs to ease the monitoring of a system, but it's still very time consuming to make sure everything is running as it should.
+  \item[Guidance] \hfill \\
+  How a user chooses to interact with the system can impact the system in various degrees. It is therefore important to make sure that the users are trained and kept up to date with all the technology that is being implemented.
+  \item[Access control] \hfill \\
+  There are always new people that are supposed to get access to different parts of the system. Keeping track of and maintaining correct access control can therefore be very time consuming.
+  \item[Design] \hfill \\
+  A lot of planning has to be done before implementing the system, or new features into the system. However, once everything is up and running, most of the design work is done.
+  \item[Information integrety] \hfill \\
+  Most of the information integrety tasks can be automated. And if the system is designed well and all the above points are being handled, there should hopefully not be frequently necessary to perform restoration and manual backups.
+\end{description}
+
+10.) The complexity of the Fault Tolerance \& High Avalability(FTHA) architecture seems to be quite on the lower end of the scale compared to the Web Application Hosting(WAH) architecture. This is mainly because FTHA does not affect as many different components as the WAH. \\
+The FTHA is also quite a bit easier to scale for better performance because you pretty much only have to implement a mirror version of an already existing setup. However the cost of scaling the FTHA would skyrocket because you always need to add all of the components. The WAH on the other hand has a lot of different components and technologies that makes it complex to scale, but gives flexibility to only upgrade the necessary components when needed. \\
+The FTHA are also limited by physical locations and connections, which adds a layer of complexity to planning and maintenance. The WAH does not suffer from the same limitations, since some of the components can be virtualized and automaticly scaled on demand.\\
+The Disaster Recovery for Local Applications(DRLA) architecture might seem to be even more complex than both FTHA and WAH, but actually is the most simple. The DRLA has a single point of scaling, the backup storage. However, the DRLA has a very complex designing and implementation part, but once everything is working as intended, there are not a lot of extra work to do. Because of the single point of scaling, the DRLA is also the cheapest of these architectures to both scale and manage.
+
+
