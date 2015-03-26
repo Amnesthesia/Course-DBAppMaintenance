@@ -8,6 +8,7 @@ done
 done
 \subsection{Assignments 4} 
 error log, query log, binary log, slow query log, mysqldump
+%/var/log/mysql.log /var/log/mysql/mysql.log /var/log/mysql/mysql-slow.log /var/log/mysql/error.log
 
 \subsection{Assignments 5} 
 \#!/bin/bash\\
@@ -34,3 +35,20 @@ tar cvzf "/home/ubuntu/backup-\$DATE.tar.gz" /home/ubuntu/backups/\\
 scp /home/ubuntu/backup-\$DATE.tar.gz ubuntu@10.10.1.176:/mnt/backup/
 
 \subsection{Assignments 6} 
+\begin{enumerate}
+\item Files to rotate can be set by giving their path
+\item Files can be rotated daily, weekly, monthly or yearly by adjusting the rotation interval parameter. The logs can also be rotated because of a set log file size
+\item The rotate count paramater determines how many log files that should be kept before the oldest are deleted.
+\end{enumerate}
+
+\subsection{Assignments 9} 
+You are not able to compress the data by backing up the mysqldump from a remote machine. The user also needs quite a lot of permissions to perform the remote backup.\\
+Performing the backup remotly might be easier to automate, depending on the setup.
+
+\subsection{Assignments 10} 
+mysqlbinlog mysql-bin.* > binlog.sql
+
+\subsection{Assignments 11} 
+yes
+
+\subsection{Assignments 14} 
