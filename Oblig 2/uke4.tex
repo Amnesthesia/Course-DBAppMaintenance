@@ -1,0 +1,41 @@
+\section{Oppgaver uke 4}
+
+\subsection{Assignments 1} 
+\textbf{Users:} echo "SELECT COUNT(userID) FROM user;" | mysql -u root --password=dearrightvery -D bookface\\
+\textbf{Posts:} echo "SELECT COUNT(postID) FROM posts;" | mysql -u root --password=dearrightvery -D bookface\\
+\textbf{Comments:} echo "SELECT COUNT(commentID) FROM comments;" | mysql -u root --password=dearrightvery -D bookface\\
+
+\subsection{Assignments 3} 
+\#!/bin/bash\\
+file=\$1\\
+if ls \$file > /dev/null; then\\
+echo “File found”\\
+else\\
+echo “No file found”\\
+fi\\
+
+
+\subsection{Assignments 5} 
+%nova --os_username=group17 --os_password="dear right very" --os_auth_url=http://chiles:5000/v2.0 --os_tenant_name=group17_project list
+\textbf{.openstack:}\\
+export OS\_TENANT\_NAME=group17\_project \\
+export OS\_USERNAME=group17 \\
+export OS\_PASSWORD="dear right very" \\
+export OS\_AUTH\_URL="http://skyhigh.hig.no:5000/v2.0" \\
+
+\textbf{status.sh:}\\
+\#!/bin/bash \\
+
+source ~/.openstack \\
+
+SHUTDOWN=\$(nova list | grep SHUTOFF | cut -f 2 -d " ") \\
+if [ -z "\$SHUTDOWN"]; then \\
+echo "No shutoff VMs" \\
+else\\
+echo "Detected shutoff VMs: \$SHUTDOWN"\\
+fi\\
+
+\subsection{Assignments 9} 
+You get a tmpfs file system. \\
+Tmpfs is a memory based filesystem which is used to store temporary files. This has faster i/o operations and might take the load off other i/o devices.\\
+When the tmpfs file system is unmounted, all files residing on the system will be lost.

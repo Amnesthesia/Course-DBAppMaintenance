@@ -1,0 +1,36 @@
+\section{Oppgaver uke 5}
+
+\subsection{Assignments 1} 
+done
+\subsection{Assignments 2}
+done
+\subsection{Assignments 3}
+done
+\subsection{Assignments 4} 
+error log, query log, binary log, slow query log, mysqldump
+
+\subsection{Assignments 5} 
+\#!/bin/bash\\
+
+DATE=\$(date +"\%y\%m\%d\%H\%M");\\
+
+function backup() \{\\
+dir="/home/ubuntu/backups/\$1/"\\
+file="/home/ubuntu/backups/\$1/\$DATE"\\
+        if ls \$dir > /dev/null; then\\
+                cp \$2 \$file\\
+        else\\
+                mkdir \$dir;\\
+                cp \$2 \$file;\\
+        fi\\
+\}\\
+
+\#(type)(path)\\
+backup "errorlog" "/var/log/syslog"\\
+\#insert all log files:\\
+
+tar cvzf "/home/ubuntu/backup-\$DATE.tar.gz" /home/ubuntu/backups/\\
+
+scp /home/ubuntu/backup-\$DATE.tar.gz ubuntu@10.10.1.176:/mnt/backup/
+
+\subsection{Assignments 6} 
