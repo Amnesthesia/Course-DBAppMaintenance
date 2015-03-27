@@ -60,10 +60,8 @@ mysqladmin flush-logs (flushing the log causes the creation of a new one)
 \subsection{Assignments 11} 
 yes
 
-\subsection{Assignments 14} 
-
 \subsection{Assignments 15}
-Each 7th day, a snapshot should be taken of the whole system. This will give time to do a full back up of the whole database and all necessary logs.\\
+Every 7th day, a snapshot should be taken of the whole system. This will give time to do a full back up of the whole database and all necessary logs.\\
 All log files should also be backed up daily. Backup logs should be kept for aslong as possible, but atleast for a minimum of 30days. Each time a log is backed up, the log start in a new file, to prevent redundant backups.
 
 \subsection{Assignments 16}
@@ -71,5 +69,3 @@ All log files should also be backed up daily. Backup logs should be kept for asl
 \item We would start by restoring most of the data from the most recent mysqldump. Then we would manually go through the binlogs and remove all the stuff we don't want to happen again, before replaying the binlog and inserting all the newest entries.
 \item A snapshot of a completly configured and set up machine should be taken of every type of server we have. A snapshot should also be taken of all systems each week and stored for a limted time. This means we will always have a snapshot of the server that is maximum 7days old at worst. All changes made to a system is also documented, so recreating all that is missing should not be too hard, though it might be time consuming.
 \end{enumerate}
-
-\subsection{Assignments 17}
