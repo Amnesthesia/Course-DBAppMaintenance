@@ -36,10 +36,15 @@ scp /home/ubuntu/backup-\$DATE.tar.gz ubuntu@10.10.1.176:/mnt/backup/
 
 \subsection{Assignments 6} 
 \begin{enumerate}
-\item Files to rotate can be set by giving their path
-\item Files can be rotated daily, weekly, monthly or yearly by adjusting the rotation interval parameter. The logs can also be rotated because of a set log file size
+\item Files to rotate can be set by giving their path (/var/log/mysql.log, /var/log/mysql/mysql.log /var/log/mysql/mysql-slow.log /var/log/mysql/error.log)
+\item Files can be rotated daily, weekly, monthly or yearly by adjusting the rotation interval parameter. The logs can also be rotated because of a set log file size (set to every day, 7 times before being removed)
 \item The rotate count paramater determines how many log files that should be kept before the oldest are deleted.
 \end{enumerate}
+	
+
+\subsection{Assignment 9} 
+When taking backups locally before sending it to another machine, you ensure that the backup exists before shipping it off. If it's being transmitted during the time of backup, chances for getting a corrupted file is greater; on the other hand, if sending it off to another machine straight away, less available space is required on the sending machine, and full logs don't necessarily have to be stored on the machine itself. 
+
 
 \subsection{Assignments 9} 
 You are not able to compress the data by backing up the mysqldump from a remote machine. The user also needs quite a lot of permissions to perform the remote backup.\\
@@ -47,6 +52,10 @@ Performing the backup remotly might be easier to automate, depending on the setu
 
 \subsection{Assignments 10} 
 mysqlbinlog mysql-bin.* > binlog.sql
+
+or 
+
+mysqladmin flush-logs (flushing the log causes the creation of a new one)
 
 \subsection{Assignments 11} 
 yes
