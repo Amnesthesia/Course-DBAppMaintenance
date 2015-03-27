@@ -1,3 +1,47 @@
-\section{Oppgaver uke 6}
+\section{Oppgaver 13. Mars}
 
 \subsection{Assignments 1} 
+Done
+
+\subsection{Assignments 2} 
+Done
+
+\subsection{Assignments 3} 
+Done
+
+\subsection{Assignments 6} 
+Yes the bookface site still works even though the memcashe is turned off. \\
+By turning the memcache off, all image and text requests have to go through the web servers.
+
+\subsection{Assignments 7} 
+After enabeling memcached we can see segnificant reduction of database quaries. There is also less overall network traffic from the webserver with memcached enables due to not having to communicate as much with the database server. 
+
+\subsection{Assignments 9} 
+After running httperf with the following settings: "httperf --rate 10 --num-conns 1500 --num-calls 3 --server 10.10.0.118 --hog --uri "/index.php" ", with and without memcached enabled, we can clearly see quite a big difference in certain areas.
+
+\begin{table}[h]
+\begin{tabular}{|ll|l|l|}
+\hline
+                                               &     & With cache & Without cache \\ \hline
+\multicolumn{1}{|l|}{Connection time {[}ms{]}} &     &            &               \\
+\multicolumn{1}{|l|}{}                         & Min & 39.2       & 50.8          \\ \cline{2-4} 
+\multicolumn{1}{|l|}{}                         & Avg & 51.2       & 70.1          \\ \cline{2-4} 
+\multicolumn{1}{|l|}{}                         & Max & 85.5       & 319.2         \\ \hline
+\multicolumn{1}{|l|}{Reply time {[}ms{]}}      &     & 10.8       & 16.8          \\ \hline
+\end{tabular}
+\end{table}
+
+\subsection{Assignments 9} 
+After running httperf with imagecache disabled, the results show that the minimum connection time stays about the same, but there are huge spikes in maximum connection time, due to the slow image request queries. The average however, stays about the same, probably because there are quite few images to load compared to text.
+
+\begin{table}[h]
+\begin{tabular}{|ll|l|l|}
+\hline
+                                               &     & With cache & Without image cache \\ \hline
+\multicolumn{1}{|l|}{Connection time {[}ms{]}} &     &            &               \\
+\multicolumn{1}{|l|}{}                         & Min & 39.2       & 39.3          \\ \cline{2-4} 
+\multicolumn{1}{|l|}{}                         & Avg & 51.2       & 55.3          \\ \cline{2-4} 
+\multicolumn{1}{|l|}{}                         & Max & 85.5       & 751.2         \\ \hline
+\multicolumn{1}{|l|}{Reply time {[}ms{]}}      &     & 10.8       & 12.1          \\ \hline
+\end{tabular}
+\end{table}
