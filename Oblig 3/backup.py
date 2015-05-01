@@ -1,0 +1,93 @@
+__author__ = 'Halvtho'
+#!/usr/bin/python
+
+import os
+import shutil
+import argparse
+
+# /backups/balancer
+# /backups/balancer.1
+# /backups/balancer.n
+# hvis absolutt sti på backup: /backups/balancer/ubuntu
+
+# condif example:
+#   balancer: /etc,/home/ubuntu
+#   db1: /etc, /dbbackups
+
+ITERATIONS = 7
+BACKUP_FOLDER = "/backups/"
+CONFIG = "/etc/backup.conf"
+
+SCP_USER = "ubuntu@"
+VERBOSE = 1
+DEBUG = 1
+
+parser = argparse.ArgumentParser(prog="pull_backup.py")
+parser.add_argument("-v","--verbose",dest="verbose",help= "Turn verbosiry on", default=False,action="store_true")
+parser.add_argument("-d","--debug",dest="debug",help= "Turn debug on", default=False,action="store_true")
+parser.add_argument("-c","--config",dest="config",help= "config path",metavar="FILE",default=CONFIG)
+parser.add_argument("-i","--iterations",dest="iterations",type=int,help="How many iterations",metavar="N",default=ITERATIONS,action="store_true")
+parser.add_argument("-b","--backup",dest="backup_folder",help= "backup folder", metavar="FOLDER",default=BACKUP_FOLDER)
+arguments = parser.parse_args()
+
+VERBOSE = arguments.verbose
+DEBUG = arguments.debug
+ITERATIONS = arguments.iterations
+BACKUP_FOLDER = arguments.backup_folder
+CONFIG = arguments.config
+
+def verbose(text):
+    if VERBOSE:
+        print(text)
+
+def debug(text):
+    if DEBUG:
+        print(text)
+
+
+
+verbose("Opening config file: " + CONFIG)
+with open(CONFIG) as config:
+    for line in config:
+        verbose("Read line: " + line)
+        configlist = line.split(":")
+        pathlist = configlist[1].split(",")
+        host = configlist[0]
+        verbose("Current client: " + host)
+        # step 0 - verify backup dir presence
+
+        host_backup_path = BACKUP_FOLDER + host
+        if not os.path.isdir(host_backup_path):
+            verbose("Creating backup folder" + host_backup_path)
+            os.makedirs(host_backup_path)
+
+
+        # step 1 - remove olderst backup folder
+        if os.path.isdir(host_backup_path + "." + str(ITERATIONS)):
+            verbose("Deleting oldest backup folder")
+            shutil.rmtree(host_backup_path + "." + str(ITERATIONS))
+
+        # step 2 - move backup folders up (eks: 6 -> 7)
+        for i in range((ITERATIONS - 1),0,-1):
+            debug("Checking if backup folder exists before rotating")
+            if os.path.isdir(host_backup_path + "." + str(i)):
+                verbose("Moving " + host_backup_path + " from " + str(i) + " to " + str(i+1))
+                shutil.move(host_backup_path + "." + str(i))
+                shutil.move(host_backup_path + "." + str(i+1))
+
+        # step 3 - copy with hardlinks base folder (this becomes .1)
+        verbose("Copying main backup folder with hard links")
+        os.system("cp -al " + host_backup_path + " " + host_backup_path + ".1")
+
+         # step 4 - rsync with client
+        verbose("Syncing folder with " + host)
+        for folder in pathlist:
+            folder = folder.rstrip()
+            verbose("-> " + folder)
+            if not os.path.isdir(host_backup_path + folder):
+                os.makedirs(host_backup_path + folder)
+
+            # rsync -av --delete ubuntu@balancer:/etc /backups/balancer/etc
+            verbose_rsync = "v" if VERBOSE else ""
+            os.system("rsync -a" + verbose_rsync + " --delete " + SCP_USER + host + ":" + folder + " " + host_backup_path + folder)
+
